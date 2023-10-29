@@ -60,7 +60,7 @@ while hit != False or bust != True or playerWin != True:
         break
 
 
-if bust != True:
+if bust != True or playerWin != True:
     while dealerTotal < 17:
         print("dealer hits...")
         dealerHand = utils.dealer_hit(cards, dealerHand)
@@ -74,14 +74,15 @@ if bust != True:
             print(f"dealer total is : {dealerTotal}")
             print("dealer stays")
             
-        print(f"dealer hand:{dealerTotal}")
         if dealerTotal >= 17:
             break
 else:
     utils.switch_case(playerWin, dealerWin, tie)
 
+bust = utils.isBust(dealerTotal)
 
-utils.isWinner(playerTotal, dealerTotal)
+
+utils.isWinner(playerTotal, dealerTotal, bust)
 
 
 #TODO compare function which determines the winner

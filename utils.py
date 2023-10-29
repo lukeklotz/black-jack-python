@@ -11,6 +11,8 @@ def build_deck():
              9, 9, 9, 9,
              10,10,10,10]
     return cards
+#TODO implement a card which represents an ACE
+#if ACE is in hand and player busts, the value of that card becomes a 1
 
 def shuffle_deck(cards):
     random.shuffle(cards)
@@ -21,13 +23,13 @@ def show_deck(cards):
 def player_hand(cards):
     hand = [cards[0], cards[1]]
     del cards[0]
-    del cards[1]
+    del cards[0]
     return hand
 
 def dealer_hand(cards):
     dealerHand = [cards[0], cards[1]]
     del cards[0]
-    del cards[1]
+    del cards[0]
     return dealerHand
 
 def player_hit(cards, playerHand):
@@ -54,20 +56,19 @@ def calculate_hand_total(playerHand, playerTotal):
         playerTotal += value
     return playerTotal
 
-def switch_case(playerWin, dealerWin, tie):
-    if playerWin == True:
-        return "You win!"
-    elif dealerWin == True:
-        return "Dealer wins."
-    elif tie == True:
-        return "Tie!"
-    else:
-        return "Error"
-    
-def isWinner(playerTotal, dealerTotal):
+
+def isWinner(playerTotal, dealerTotal, bust):
     if playerTotal > dealerTotal:
-        return "You win!"
+        print("You win!")
+    elif bust == True:
+        print("You Win!")
     elif playerTotal < dealerTotal:
-        return "Dealer wins."
+        print("Dealer wins.")
     else:
-        return "Tie!"
+        print("Tie!")
+
+def isBust(dealerTotal):
+    if dealerTotal > 21:
+        return True
+    else:
+        return False
