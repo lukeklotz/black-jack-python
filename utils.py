@@ -9,7 +9,8 @@ def build_deck():
              7, 7, 7, 7,
              8, 8, 8, 8,
              9, 9, 9, 9,
-             10,10,10,10]
+             10,10,10,10,
+             11,11,11,11]
     return cards
 #TODO implement a card which represents an ACE
 #if ACE is in hand and player busts, the value of that card becomes a 1
@@ -54,6 +55,11 @@ def calculate_hand_total(playerHand, playerTotal):
     playerTotal = 0
     for value in playerHand:
         playerTotal += value
+    
+    if 11 in playerHand and playerTotal > 21:
+        #value 11 in playerHand is set to 1
+        playerHand.remove(11)
+        playerTotal -= 10
     return playerTotal
 
 
